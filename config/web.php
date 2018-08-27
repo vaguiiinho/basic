@@ -75,7 +75,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '10.0.2.2'],
+        //'allowedIPs' => ['127.0.0.1'],
     ];
 }
 
