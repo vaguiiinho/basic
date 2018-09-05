@@ -17,13 +17,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            
             'descricao',
             'valor',           
             'validade',
-            'id_categoria',            
-            'id_tipo',
-            'id_situacao',
+            [                            
+                'attribute' => 'categoria',                
+                'value' => 'categoria.categoria',
+                 'headerOptions' => [
+                    'style' => 'color: #0083bb;'
+                ],   
+                    
+            ],            
+            
+            [
+                'attribute' => 'tipo',                
+                'value' => 'tipo.tipo',
+                'headerOptions' => [
+                    'style' => 'color: #0083bb;'
+                ],
+            ],
+            
+            [
+                'attribute' => 'situacao',
+                'value' => 'situacao.situacao',
+                'headerOptions' => [
+                    'style' => 'color: #0083bb;'
+                ],
+            ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}' ],           
         ],

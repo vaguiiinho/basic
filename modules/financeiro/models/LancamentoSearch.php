@@ -11,11 +11,12 @@ use app\modules\financeiro\models\Lancamento;
 class LancamentoSearch extends Lancamento
 {
     
+
     public function rules()
     {
         return [
             [['id', 'valor', 'id_categoria', 'id_situacao', 'id_tipo'], 'integer'],
-            [['descricao', 'validade'], 'safe'],
+            [['descricao', 'validade', 'categoria', 'tipo', 'situacao'], 'safe'],
         ];
     }
 
@@ -29,11 +30,16 @@ class LancamentoSearch extends Lancamento
     public function search($params)
     {
         $query = Lancamento::find();
-
+        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],            
         ]);
+        
+      
 
         $this->load($params);
 
@@ -51,6 +57,9 @@ class LancamentoSearch extends Lancamento
             'id_situacao' => $this->id_situacao,
             'id_tipo' => $this->id_tipo,
         ]);
+        
+        
+        
 
         $query->andFilterWhere(['ilike', 'descricao', $this->descricao]);
 
