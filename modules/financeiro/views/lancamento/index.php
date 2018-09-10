@@ -15,35 +15,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
        <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             
             'descricao',
-            'valor',           
-            'validade',
-            [                            
-                'attribute' => 'categoria',                
-                'value' => 'categoria.categoria',
-                 'headerOptions' => [
-                    'style' => 'color: #0083bb;'
-                ],   
-                    
-            ],            
-            
+                     
             [
-                'attribute' => 'tipo',                
-                'value' => 'tipo.tipo',
-                'headerOptions' => [
-                    'style' => 'color: #0083bb;'
-                ],
+            'attribute' => 'valor',
+            'format' => 'currency',
+            ],
+            [
+                'attribute' => 'validade',
+                'format'=> 'date',            
+            ], 
+            [                            
+                'attribute' => 'id_categoria',                
+                'value' => 'categoria.categoria',                
+            ],                                 
+            [
+                'attribute' => 'id_tipo',                
+                'value' => 'tipo.tipo',            
             ],
             
             [
-                'attribute' => 'situacao',
-                'value' => 'situacao.situacao',
-                'headerOptions' => [
-                    'style' => 'color: #0083bb;'
-                ],
+                'attribute' => 'id_situacao',
+                'value' => 'situacao.situacao',               
             ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}' ],           

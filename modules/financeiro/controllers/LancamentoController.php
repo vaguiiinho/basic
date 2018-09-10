@@ -48,15 +48,24 @@ class LancamentoController extends Controller
         ]);
     }
 
+    /**
+     * @return string|\yii\web\Response
+     */
     public function actionCreate()
     {
         $model = new Lancamento();
 
+
         // Aqui tá retornando todas as categorias, tipos, e situações
         // Selecionando o ID e a coluna que vai ser servir de texto
-        $categoriasOpts = Categoria::find()->select(['id', 'categoria'])->all();
-        $tiposOpts = Tipo::find()->select(['id', 'tipo'])->all();
-        $situacaoOpts = Situacao::find()->select(['id', 'situacao'])->all();
+
+        $categoria = Categoria::find()->all();
+        $tipo = Tipo::find()->select(['id', 'tipo'])->all();
+        $situacao = Situacao::find()->select(['id', 'situacao'])->all();
+
+        //$categoriasOpts = Categoria::find()->select(['id', 'categoria'])->all();
+        //$tiposOpts = Tipo::find()->select(['id', 'tipo'])->all();
+        //$situacaoOpts = Situacao::find()->select(['id', 'situacao'])->all();
            
         // Aqui ele mapeia o array retornado e transforma nisso aqui
         // [
@@ -69,20 +78,22 @@ class LancamentoController extends Controller
         // Isso aqui é importante no dropdown, o valor do ID vai ser o value do dropdown (que é o que vai ser capturado no post)
         // e o valor da coluna categoria vai ser o texto representativo
         //$categoriasOpts = ArrayHelper::map($categoriasOpts, 'id', 'categoria');
-        $tempCategoriaOpts = $categoriasOpts;
-        $categoriasOpts = [];
-        foreach ($tempCategoriaOpts as $categoria) {
-            $categoriasOpts[$categoria->id] = $categoria->categoria;
-        }
-        $tiposOpts = ArrayHelper::map($tiposOpts, 'id', 'tipo');
-        $situacaoOpts = ArrayHelper::map($situacaoOpts, 'id', 'situacao');
-                          
+        //$tempCategoriaOpts = $categoriasOpts;
+        //$categoriasOpts = [];
+        //foreach ($tempCategoriaOpts as $categoria) {
+        //    $categoriasOpts[$categoria->id] = $categoria->categoria;
+        //}
+        //$tiposOpts = ArrayHelper::map($tiposOpts, 'id', 'tipo');
+        //$situacaoOpts = ArrayHelper::map($situacaoOpts, 'id', 'situacao');
+        $itemCategoria = ArrayHelper::map($categoria, 'id', 'categoria');
+        $itemTipo = ArrayHelper::map($tipo, 'id', 'tipo');
+        $itemSituacao = ArrayHelper::map($situacao, 'id', 'situacao');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
-        return $this->render('form', compact('model', 'categoriasOpts', 'tiposOpts', 'situacaoOpts'));
+        return $this->render('form', compact('model','itemCategoria', 'itemTipo', 'itemSituacao'));
     }
 
     public function actionUpdate($id)

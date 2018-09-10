@@ -4,6 +4,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [    
+    'language' => 'pt-br',
     'id' => 'basic',
     'name' => 'Contas',
     'defaultRoute' => 'financeiro/lancamento/create',
@@ -44,6 +45,8 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => ['dateFormat' => 'MM/dd/yyyy'],           
+
         'db' => $db,
         /*
         'urlManager' => [

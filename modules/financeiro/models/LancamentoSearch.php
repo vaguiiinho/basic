@@ -30,7 +30,6 @@ class LancamentoSearch extends Lancamento
     public function search($params)
     {
         $query = Lancamento::find();
-        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

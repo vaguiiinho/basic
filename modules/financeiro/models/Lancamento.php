@@ -19,9 +19,8 @@ class Lancamento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descricao', 'valor', 'validade', 'id_categoria', 'id_situacao', 'id_tipo'], 'required'],
-            [['valor'], 'default', 'value' => null],
-            [['valor'], 'integer'],
+            [['descricao', 'valor', 'validade', 'id_categoria', 'id_situacao', 'id_tipo'], 'required'], 
+            [['valor'], 'double'],
             [['validade'], 'date', 'format' => 'dd/MM/yyyy'],
             [['descricao'], 'string', 'max' => 50],
             [['id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['id_categoria' => 'id']],
@@ -36,8 +35,7 @@ class Lancamento extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'descricao' => 'Descricao',
-            'valor' => 'Valor',
-            'id_categoria' => 'Id Categoria',
+            'valor' => 'Valor',            
             'validade' => 'Validade',
             'id_categoria' => 'Categoria',
             'id_situacao' => 'Situação',

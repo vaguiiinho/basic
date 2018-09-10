@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 <?= $form->field($model, 'validade')->textInput() ?>
 
-                <?= $form->field($model, 'id_categoria')->dropDownList($categoriasOpts, ['prompt'=>'']) ?>
+                <?= $form->field($model, 'id_categoria')->dropDownList($itemCategoria, ['prompt'=>'']) ?>
 
-                <?= $form->field($model, 'id_tipo')->dropDownList($tiposOpts, ['prompt'=>'']) ?>
+                <?= $form->field($model, 'id_tipo')->dropDownList($itemTipo, ['prompt'=>'']) ?>
 
-                <?= $form->field($model, 'id_situacao')->dropDownList($situacaoOpts, ['prompt'=>'']) ?>
+                <?= $form->field($model, 'id_situacao')->dropDownList($itemSituacao, ['prompt'=>'']) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
