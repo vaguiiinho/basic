@@ -36,6 +36,9 @@ at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 You can then install this project template using the following command:
 
 DIRECTORY STRUCTURE
+-------------------
+
+
   assets/             contains assets definition
   commands/           contains console commands (controllers)
   config/             contains application configurations
