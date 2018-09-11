@@ -24,6 +24,19 @@ REQUIREMENTS
 
 The minimum requirement by this project template that your Web server supports PHP 5.4.0.
 
+APPAsset
+
+<pre><code>
+    vendor/font-awesome/css/font-awesome.min.css,
+    vendor/bootstrap/css/bootstrap.min.css,
+    vendor/metisMenu/metisMenu.min.css,
+    dist/css/sb-admin-2.css
+
+    vendor/jquery/jquery.min.js,
+    vendor/bootstrap/js/bootstrap.min.js,
+    vendor/metisMenu/metisMenu.min.js,
+    dist/js/sb-admin-2.js
+</code></pre>
 
 INSTALLATION
 ------------
@@ -61,3 +74,45 @@ DIRECTORY STRUCTURE
 
 DB
 --
+
+<pre><code>
+
+    CREATE TABLE tipo
+(
+    id INT NOT NULL,
+    tipo VARCHAR (50) NOT NULL,
+    CONSTRAINT  PRIMARY KEY (id),
+)
+
+CREATE TABLE categoria
+(
+    id INT NOT NULL, 
+    categoria VARCHAR (50)  NOT NULL,
+    id_tipo INT NOT NULL, 
+    CONSTRAINT  PRIMARY KEY (id),
+    CONSTRAINT  FOREIGN KEY (id_tipo),        
+)
+
+CREATE TABLE situacao
+(
+    id INT NOT NULL,
+    situacao VARCHAR (50)  NOT NULL,
+    CONSTRAINT PRIMARY KEY (id),
+)
+
+CREATE TABLE lancamento
+(
+    id INT NOT NULL,
+    descricao VARCHAR (50)  NOT NULL,
+    valor DOUBLE  NOT NULL,
+    validade DATE NOT NULL,
+    id_tipo INT NOT NULL, 
+    id_categoria INT NOT NULL,
+    id_situacao INT NOT NULL,
+    CONSTRAINT  PRIMARY KEY (id),
+    CONSTRAINT  FOREIGN KEY (id_categoria),
+    CONSTRAINT  FOREIGN KEY (id_situacao),
+    CONSTRAINT  FOREIGN KEY (id_tipo),      
+)
+
+</code></pre>
