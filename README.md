@@ -38,6 +38,7 @@ You can then install this project template using the following command:
 DIRECTORY STRUCTURE
 -------------------
 
+<pre><code>
 
   assets/             contains assets definition
   commands/           contains console commands (controllers)
@@ -55,3 +56,8 @@ DIRECTORY STRUCTURE
   vendor/             contains dependent 3rd-party packages
   views/              contains view files for the Web application
   web/                contains the entry script and Web resources
+
+</code></pre>
+
+DB
+--
