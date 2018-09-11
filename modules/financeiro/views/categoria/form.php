@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'categoria')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'id_tipo')->textInput() ?>
+                 <?= $form->field($model, 'id_tipo')->dropDownList($itemTipo, ['prompt'=>'']) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -29,7 +29,7 @@ class Categoria extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'categoria' => 'Categoria',
-            'id_tipo' => 'Id Tipo',
+            'id_tipo' => 'Tipo',
         ];
     }
 

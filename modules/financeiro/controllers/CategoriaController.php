@@ -3,6 +3,8 @@
 namespace app\modules\financeiro\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use app\modules\financeiro\models\Tipo;
 use app\modules\financeiro\models\Categoria;
 use app\modules\financeiro\models\CategoriaSearch;
 use yii\web\Controller;
@@ -47,12 +49,15 @@ class CategoriaController extends Controller
     {
         $model = new Categoria();
 
+        $tipo = Tipo::find()->select(['id', 'tipo'])->all();
+        $itemTipo = ArrayHelper::map($tipo, 'id', 'tipo');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
         return $this->render('form', [
-            'model' => $model,
+            'model' => $model, 'itemTipo' => $itemTipo,
         ]);
     }
    
