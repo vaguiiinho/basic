@@ -35,4 +35,20 @@ at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 You can then install this project template using the following command:
 
-teste
+DIRECTORY STRUCTURE
+  assets/             contains assets definition
+  commands/           contains console commands (controllers)
+  config/             contains application configurations
+  controllers/        contains Web controller classes
+  mail/               contains view files for e-mails
+  models/             contains model classes
+  modules/            contains modules  
+    financeiro/       contains module classe
+        controllers/  contains Web controller classes
+        models/       contains model classes
+        views/        contains view files for the Web application  
+  runtime/            contains files generated during runtime
+  tests/              contains various tests for the basic application
+  vendor/             contains dependent 3rd-party packages
+  views/              contains view files for the Web application
+  web/                contains the entry script and Web resources
