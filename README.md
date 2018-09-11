@@ -35,4 +35,4 @@ at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 You can then install this project template using the following command:
 
-
+teste
