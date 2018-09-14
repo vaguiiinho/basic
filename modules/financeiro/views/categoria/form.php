@@ -7,12 +7,13 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\financeiro\models\Categoria */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = 'Categorias';
+$this->title = 'Nova Categoria';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="categoria-form">
-    
+
+    <h1><?= Html::encode($this->title) ?></h1>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5">

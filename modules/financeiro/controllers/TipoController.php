@@ -2,6 +2,7 @@
 
 namespace app\modules\financeiro\controllers;
 
+use app\modules\financeiro\models\Lancamento;
 use Yii;
 use app\modules\financeiro\models\Tipo;
 use app\modules\financeiro\models\TipoSearch;
@@ -28,11 +29,13 @@ class TipoController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new TipoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Tipo::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -85,4 +88,5 @@ class TipoController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

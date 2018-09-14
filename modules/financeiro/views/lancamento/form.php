@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5">
-                <?php $form = ActiveForm::begin(); ?>                
+                <?php $form = ActiveForm::begin(); ?>
 
                 <?= $form->field($model, 'descricao')->textInput() ?>
 
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'id_tipo')->dropDownList($itemTipo, ['prompt'=>'']) ?>
 
-                <?= $form->field($model, 'id_situacao')->dropDownList($itemSituacao, ['prompt'=>'']) ?>
+                <?= $form->field($model, 'situacao')->textInput() ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

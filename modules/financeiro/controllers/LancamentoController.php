@@ -6,8 +6,7 @@ use Yii;
 use app\modules\financeiro\models\Lancamento;
 use app\modules\financeiro\models\Categoria;
 use app\modules\financeiro\models\Tipo;
-use app\modules\financeiro\models\Situacao;
-use app\modules\financeiro\models\LancamentoSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,11 +31,14 @@ class LancamentoController extends Controller
     
     public function actionIndex()
     {
-        $searchModel = new LancamentoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Lancamento::find();
+
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -48,9 +50,7 @@ class LancamentoController extends Controller
         ]);
     }
 
-    /**
-     * @return string|\yii\web\Response
-     */
+
     public function actionCreate()
     {
         $model = new Lancamento();
@@ -61,7 +61,7 @@ class LancamentoController extends Controller
 
         $categoria = Categoria::find()->all();
         $tipo = Tipo::find()->select(['id', 'tipo'])->all();
-        $situacao = Situacao::find()->select(['id', 'situacao'])->all();
+
 
         //$categoriasOpts = Categoria::find()->select(['id', 'categoria'])->all();
         //$tiposOpts = Tipo::find()->select(['id', 'tipo'])->all();
@@ -87,26 +87,30 @@ class LancamentoController extends Controller
         //$situacaoOpts = ArrayHelper::map($situacaoOpts, 'id', 'situacao');
         $itemCategoria = ArrayHelper::map($categoria, 'id', 'categoria');
         $itemTipo = ArrayHelper::map($tipo, 'id', 'tipo');
-        $itemSituacao = ArrayHelper::map($situacao, 'id', 'situacao');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
-        return $this->render('form', compact('model','itemCategoria', 'itemTipo', 'itemSituacao'));
+        return $this->render('form', compact('model','itemCategoria', 'itemTipo'));
     }
 
     public function actionUpdate($id)
     {
+        $model = new Lancamento();
+
+        $categoria = Categoria::find()->all();
+        $tipo = Tipo::find()->select(['id', 'tipo'])->all();
+        $itemCategoria = ArrayHelper::map($categoria, 'id', 'categoria');
+        $itemTipo = ArrayHelper::map($tipo, 'id', 'tipo');
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
-        return $this->render('form', [
-            'model' => $model,
-        ]);
+        return $this->render('form', compact('model','itemCategoria', 'itemTipo'));
     }
 
     public function actionDelete($id)
@@ -124,4 +128,14 @@ class LancamentoController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionSituacao($id)
+    {
+        $situacao = $this->findModel($id);
+        $situacao->situacao = (int)!$situacao->situacao;
+        if($situacao->save()){
+            return $this->redirect(['index']);
+        }
+    }
+
 }

@@ -16,9 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
        <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            
             'descricao',
-                     
             [
             'attribute' => 'valor',
             'format' => 'currency',
@@ -35,13 +33,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_tipo',                
                 'value' => 'tipo.tipo',            
             ],
-            
             [
-                'attribute' => 'id_situacao',
-                'value' => 'situacao.situacao',               
+                'attribute' => 'situacao',
+                'content' => function($model, $id){
+                    if($model->situacao){
+                        return Html::a('Pendente', [
+                            'situacao',
+                            'id' => $model->id],
+                            ['class' => 'label label-warning']);
+                    }
+                    return Html::a('Paga', [
+                        'situacao',
+                        'id' => $model->id],
+                        ['class' => 'label label-success']);
+                },
+                'format' => 'raw',
             ],
-
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}' ],           
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}']
         ],
     ]); ?>
 </div>
