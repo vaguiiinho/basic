@@ -6,6 +6,8 @@ use app\modules\financeiro\models\Lancamento;
 use Yii;
 use app\modules\financeiro\models\Tipo;
 use app\modules\financeiro\models\TipoSearch;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +25,27 @@ class TipoController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create'],
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'situacao'],
+                        'roles' => ['@'],
+                        'matchCallback' => function (){
+                            return Yii::$app->user->identity->username === 'admin';
+                        },
+                        'denyCallback' => function ($rule, $action) {
+                            throw new \Exception('Você não está autorizado a acessar esta página');
+                        }
+                    ]
+                ]
             ],
         ];
     }

@@ -7,6 +7,7 @@ use app\modules\financeiro\models\Lancamento;
 use app\modules\financeiro\models\Categoria;
 use app\modules\financeiro\models\Tipo;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,6 +26,24 @@ class LancamentoController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create'],
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'situacao'],
+                        'roles' => ['@'],
+                        'matchCallback' => function (){
+                            return Yii::$app->user->identity->username === 'admin';
+                        }
+                    ]
+                ]
             ],
         ];
     }

@@ -26,67 +26,41 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+        <?php
+        NavBar::begin([
+            'brandLabel' => Yii::$app->name,
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top'
+            ]
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                )
+            ],
+        ]);
 
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top'
-        ]
-    ]);
-
-    NavBar::end();
-    ?>
-
-    <div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-3">
-				<div class="navbar-default sidebar" role="navigation">
-					<div class="sidebar-nav navbar-collapse">
-						<ul class="nav" id="side-menu">														
-							<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Contas<span
-									class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
-									<li><?= Html::a('Novo', 'financeiro/lancamento/create') ?></li>
-									<li><?= Html::a('Lista', 'financeiro/lancamento/index') ?></li>
-								</ul>
-							</li>
-							<li><a href="#"><i class="fa fa-location-arrow fa-fw"></i>Categoria<span
-									class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
-									<li><?= Html::a('Novo', 'financeiro/categoria/create') ?></li>
-									<li><?= Html::a('Lista', 'financeiro/categoria/index') ?></li>
-								</ul>
-							</li>
-							<li><a href="#"><i class="fa fa-thumb-tack fa-fw"></i> Tipo<span
-									class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
-									<li><?= Html::a('Novo', 'financeiro/tipo/create') ?></li>
-									<li><?= Html::a('Lista', 'financeiro/tipo/index') ?></li>
-								</ul>
-							</li>							
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-8">
-                <?=Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []])?>
-                <?= Alert::widget() ?>
-                <?= $content ?>
-       		 </div>
-     	 </div>
-	</div>
-		<footer class="footer">
-			<div class="container">
-				<p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-				<p class="pull-right"><?= Yii::powered() ?></p>
-			</div>
-		</footer>
+        NavBar::end();
+        ?>
+<div class="container">
+    <div class="row">
+        <?= $content?>
+    </div>
+</div>
 
 <?php $this->endBody() ?>
-
 
 </body>
 </html>

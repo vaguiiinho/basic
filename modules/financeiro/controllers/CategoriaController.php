@@ -3,6 +3,8 @@
 namespace app\modules\financeiro\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use app\modules\financeiro\models\Tipo;
 use app\modules\financeiro\models\Categoria;
@@ -23,6 +25,24 @@ class CategoriaController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create'],
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => 'true',
+                        'actions' => ['index', 'create', 'view', 'update', 'delete', 'situacao'],
+                        'roles' => ['@'],
+                        'matchCallback' => function (){
+                            return Yii::$app->user->identity->username === 'admin';
+                        }
+                    ]
+                ]
             ],
         ];
     }

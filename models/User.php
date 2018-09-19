@@ -8,6 +8,10 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
 
+    public static function tableName()
+    {
+        return 'usuario';
+    }
 
     public static function findIdentity($id)
     {
@@ -43,6 +47,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return $password === $password;
     }
+
 }
