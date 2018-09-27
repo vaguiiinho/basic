@@ -56,7 +56,7 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top:50px">
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="navbar-default sidebar" role="navigation">
@@ -65,12 +65,8 @@ AppAsset::register($this);
 							<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Contas<span
 									class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
-									<li>
-                                                                            <?= Html::a('Novo', ['lancamento/create']) ?>
-                                                                        </li>
-									<li>
-                                                                            <?= Html::a('Lista', ['lancamento/index']) ?>
-                                                                        </li>
+									<li><?= Html::a('Novo', ['lancamento/create']) ?></li>
+									<li><?= Html::a('Lista', ['lancamento/index']) ?></li>
 								</ul>
 							</li>
 							<li><a href="#"><i class="fa fa-location-arrow fa-fw"></i>Categoria<span
@@ -86,7 +82,7 @@ AppAsset::register($this);
 									<li><?= Html::a('Novo', ['tipo/create']) ?></li>
 									<li><?= Html::a('Lista', ['tipo/index']) ?></li>
 								</ul>
-							</li>							
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -98,7 +94,7 @@ AppAsset::register($this);
        		 </div>
      	 </div>
 	</div>
-		
+
 
 <?php $this->endBody() ?>
 

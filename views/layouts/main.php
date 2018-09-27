@@ -25,7 +25,8 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<div class="container">
+    <div class="header">
         <?php
         NavBar::begin([
             'brandLabel' => Yii::$app->name,
@@ -54,7 +55,9 @@ AppAsset::register($this);
 
         NavBar::end();
         ?>
-<div class="container">
+        </div>
+    </div>
+<div class="container" style="margin-top: 40px">
     <div class="row">
         <?= $content?>
     </div>
